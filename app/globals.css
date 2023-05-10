@@ -9,8 +9,39 @@ body {
 
 #body {
   background: #ebf5ee;
+  overflow-x: hidden;
 }
 
 #top-image {
   border-radius: 50%;
+}
+
+.menu_popover {
+  background: #ebf5ee;
+  transition: all 0s ease;
+  /*box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;*/
+  
+}
+
+
+
+.menu_wrapper {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.hero_wrapper {
+  border: 1px solid red;
+  border-radius: 7px;
+}
+
+.text_gradient {
+  background: linear-gradient(45deg, #347fc4, aqua, #347fc4 );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cards {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
