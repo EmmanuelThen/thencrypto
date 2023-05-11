@@ -72,7 +72,7 @@ const Hero = (props: Props) => {
       </div>
 
       <div className='flex justify-center mt-10'>
-        <div className='w-full mx-10 '>
+        <div className='w-[50%] mx-10 '>
           <ThemeProvider theme={theme}>
             <Autocomplete
               value={searchCoin}
