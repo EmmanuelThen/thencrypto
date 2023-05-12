@@ -12,8 +12,8 @@ export default function Home() {
       <RootLayout>
         <Navbar />
         <Hero />
-        <main className='flex justify-center w-[100%] bg-[#347fc4]'>
-          <Sidebar />
+        <main className=' w-[100%] bg-[#347fc4]'>
+          
           <Card />
         </main>
         <Footer />

@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['cdn.coinranking.com']
+    domains: ['cdn.coinranking.com', 'i-invdn-com.investing.com']
   }
 }
 
