@@ -7,12 +7,17 @@ import { Fab, Box } from "@mui/material"
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Popper, PopperPlacementType, Fade, Paper, Popover, Typography } from "@mui/material"
 import Sidebar from "./Sidebar"
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 type Props = {}
 
 const Card = (props: Props) => {
-    const [coins, setCoins] = useState([])
+    const [coins, setCoins] = useState([]);
+    const [selectedCoin, setselectedCoin] = useState(null)
+    
+
     // const [count, setCount] = useState(number) for when user clicks on button it displays more coins url needs `limit=${count}`
 
     useEffect(() => {
@@ -22,7 +27,7 @@ const Card = (props: Props) => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEYzzzzzzzz,
+                    'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY,
                     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
                 }
             };
@@ -44,8 +49,10 @@ const Card = (props: Props) => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, coin: any) => {
         setAnchorEl(event.currentTarget);
+        setselectedCoin(coin) // To open graph for specific coin cards
+        
     };
 
     const handleClose = () => {
@@ -72,15 +79,15 @@ const Card = (props: Props) => {
 
     return (
         <>
-            <div className="md:flex ">
+            <div className="md:flex md:justify-center">
                 <Sidebar />
-                <div className="hero_wrapper grid grid-cols-2 p-5 lg:p-0 md:w-full bg-[#347fc4]">
-                
+                <div className="hero_wrapper h-full grid grid-cols-2 p-5 lg:p-0 md:w-full bg-[#347fc4] max-w-[800px]">
+
                     {coins.map((coin) => (
-                
-                        <div key={coin.uuid} className="cards p-1 md:p-0 m-1   rounded-lg md:leading-8 bg-[#fff]     text-xs md:text-sm lg:text-base">
+
+                        <div key={coin.uuid} className="cards  p-1 md:p-0 m-1 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs md:text-sm lg:text-base">
                             <div className="p-1 md:p-3">
-                
+
                                 <div className="flex justify-between items-center mb-3">
                                     <Image src={coin.iconUrl} alt="coin logo" width={40} height={40} />
                                     <div className="flex flex-col justify-center items-center">
@@ -89,12 +96,12 @@ const Card = (props: Props) => {
                                         <div className="h-[1px] bg-gray-300 w-full" />
                                     </div>
                                     <div className="">
-                                        <Fab size="small" style={{ color: coin.color }} aria-label="add" onClick={handleClick}>
-                                            <FormatListBulletedIcon />
+                                        <Fab id={id} size="small" style={{ color: coin.color }} aria-label="add" onClick={(event) => handleClick(event, coin)}>
+                                            <TrendingUpIcon />
                                         </Fab>
                                         <Popover
                                             id={id}
-                                            open={open}
+                                            open={open && coin.uuid === selectedCoin?.uuid}
                                             anchorEl={anchorEl}
                                             onClose={handleClose}
                                             anchorOrigin={{
@@ -102,8 +109,24 @@ const Card = (props: Props) => {
                                                 horizontal: 'left',
                                             }}
                                         >
-                                            <Typography sx={{ p: 2 }}>Coin details</Typography>
+                                            <div className="w-screen h-screen">
+                                                <div className="popover_wrapper p-10">
+                                                    <div className="flex justify-between" id="top-title-div">
+                                                        <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
+                                                        <div className="flex flex-col items-center">
+                                                            <h1 style={{ color: coin.color }}>{coin.symbol}</h1>
+                                                            <h1 className="text-gray-400">{coin.name}</h1>
+                                                        </div>
+                                                        <CloseIcon />
+                                                    </div>
+
+                                                    <div className="hero_wrapper" id="graph_container">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </Popover>
+
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
@@ -127,6 +150,7 @@ const Card = (props: Props) => {
                     ))}
                 </div >
             </div>
+
 
         </>
     )
