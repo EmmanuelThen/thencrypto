@@ -2,13 +2,15 @@
 import { useEffect, useState } from "react"
 import React from 'react'
 import Image from "next/image"
-import { DateRange } from "@mui/icons-material"
 import { Fab, Box } from "@mui/material"
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import { Popper, PopperPlacementType, Fade, Paper, Popover, Typography } from "@mui/material"
+import {  Popover } from "@mui/material"
 import Sidebar from "./Sidebar"
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CloseIcon from '@mui/icons-material/Close';
+import { Line } from "react-chartjs-2"
+import Charts from "./Charts";
+import TimestampInput from "./TimestampInput"
+
 
 
 type Props = {}
@@ -77,6 +79,8 @@ const Card = (props: Props) => {
 
     }
 
+
+
     return (
         <>
             <div className="md:flex md:justify-center">
@@ -120,9 +124,11 @@ const Card = (props: Props) => {
                                                         <CloseIcon />
                                                     </div>
 
-                                                    <div className="hero_wrapper" id="graph_container">
+                                                    <div className="hero_wrapper h-screen md:p-20" id="chart_container">
+                                                        <Charts coinUuid={coin.uuid} lineColor={coin.color} coinName={coin.name} coinPrice={Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(coin.price)} />
                                                         
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </Popover>
