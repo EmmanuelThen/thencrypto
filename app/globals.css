@@ -3,8 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  
+.theme_color {
+  color: #347fc4;
 }
 
 #body {
@@ -46,4 +46,10 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
 
+.popover_container {
+  background: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease-in-out;
+}
 

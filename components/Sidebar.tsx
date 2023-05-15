@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Props = {}
+type Props = {
+  coinName: string,
+}
 
-const Sidebar = (props: Props) => {
+const Sidebar = ({coinName}: Props) => {
   const [news, setNews] = useState([]);
 
 
@@ -13,7 +15,7 @@ const Sidebar = (props: Props) => {
   {/** To call our API */ }
   useEffect(() => {
     const getNews = async () => {
-      const url = 'https://bing-news-search1.p.rapidapi.com/news/search?q=crypto&textDecorations=false&freshness=Day&textFormat=Raw&safeSearch=Strict';
+      const url = `https://bing-news-search1.p.rapidapi.com/news/search?q=crypto%20${coinName}&textDecorations=false&freshness=Day&textFormat=Raw&safeSearch=Strict`;
       const options = {
         method: 'GET',
         headers: {
@@ -33,7 +35,7 @@ const Sidebar = (props: Props) => {
       }
     };
       getNews()
-    }, [])
+    }, [coinName])
 
 
     const placeHolderImg = 'https://www.bankrate.com/2021/12/12091324/Best-blockchain-ETFs.jpg?auto=webp&optimize=high&crop=16:9&width=912'
@@ -46,9 +48,9 @@ const Sidebar = (props: Props) => {
 
 
   return (
-    <div className='hero_wrapper  md:flex md:flex-col md:min-w-[45%] lg:min-w-[50%] md:w-[50%] bg-[#262626]'>
+    <div className='hero_wrapper  md:flex md:flex-col md:min-w-[45%] lg:min-w-[50%] md:w-full '>
       <div className='flex justify-center'>
-        <h1 className=' text-xl p-2  text-gray-400 tracking-[5px]'>Top Crypto News</h1>
+        <h1 className=' text-xl p-2  text-gray-400 tracking-[5px]'>Top {coinName} News</h1>
       </div>
 
       <div className='flex text-xs overflow-x-scroll p-3 md:overflow-x-hidden  md:p-10 md:block md:text-sm lg:text-base md:w-fit scroll-smooth'>
