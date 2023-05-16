@@ -3,12 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+@layer utilities {
+  .perspective-500 {
+    perspective: 500px;
+  }
+}
+
+
 .theme_color {
   color: #347fc4;
 }
 
 #body {
-  background: #ebf5ee;
+  background: #347fc4;
   overflow-x: hidden;
 }
 
@@ -31,7 +40,7 @@
 }
 
 .hero_wrapper {
-  border: 1px solid red;
+  outline: 1px solid red;
   border-radius: 7px;
 }
 
@@ -52,4 +61,43 @@
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.2s ease-in-out;
 }
+
+#text_shadow {
+  text-shadow: rgba(0, 0, 0, 0.50) 0 8px 15px;
+}
+
+@media screen and (max-width: 767px ) {
+  #text_shadow {
+    text-shadow: rgba(0, 0, 0, 0.50) 0 4px 7px;
+  }
+}
+
+
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: 'Questrial', sans-serif;
+}
+
+#motion_section > #motion_div {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  max-height: 90vh;
+  margin: 20px;
+  background-color: red;
+  overflow: hidden;
+}
+
+#motion_section {
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: center;
+}
+
+
 

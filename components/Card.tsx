@@ -85,20 +85,20 @@ const Card = (props: Props) => {
 
     return (
         <>
-            <div className="md:flex md:justify-center">
+            <div className="md:flex md:justify-center md:p-3">
                 
                 <div className="hero_wrapper h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full bg-[#347fc4] ">
 
                     {coins.map((coin) => (
 
-                        <div key={coin.uuid} className="cards  p-1 md:p-0 m-1 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs md:text-sm lg:text-base">
+                        <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">
                             <div className="p-1 md:p-3">
 
                                 <div className="flex justify-between items-center mb-3">
-                                    <Image src={coin.iconUrl} alt="coin logo" width={40} height={40} />
+                                    <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
                                     <div className="flex flex-col justify-center items-center">
                                         <h4 style={{ color: coin.color }}>{coin.symbol}</h4>
-                                        <span className=" text-gray-400">{coin.name}</span>
+                                        <span className="text-gray-400 truncate" style={{ maxWidth: 80 }}>{coin.name}</span>
                                         <div className="h-[1px] bg-gray-300 w-full" />
                                     </div>
                                     <div className="">
@@ -139,7 +139,7 @@ const Card = (props: Props) => {
                                                             coinVolume={numberFormatter(coin['24hVolume'])}
                                                             coinRank={coin.rank}
                                                         />
-                                                        <Sidebar coinName={coin.name} />
+                                                        {/*<Sidebar coinName={coin.name} />*/}
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,7 +148,7 @@ const Card = (props: Props) => {
                                 </div>
                                 <div>
                                     <div className="flex justify-center mb-3 md:mb-8">
-                                        <span className='text-xl md:text-4xl font-bold' style={{ color: coin.color }}>
+                                        <span className='text-xl md:text-3xl font-bold' style={{ color: coin.color }}>
                                             {Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(coin.price)}
                                         </span>
                                     </div>

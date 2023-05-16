@@ -14,10 +14,10 @@ import CloseIcon from '@mui/icons-material/Close';
 const Menu = ({ }) => {
     return (
         <>
-            <Link href='/' className='hover:text-[#347fc4]'>Home</Link>
-            <Link href='/' className='hover:text-[#347fc4]'>Cryptocurrencies</Link>
-            <Link href='/' className='hover:text-[#347fc4]'>Exchanges</Link>
-            <Link href='/' className='hover:text-[#347fc4]'>News</Link>
+            <Link href='/' className='hover:text-[#ebf5ee]'>Home</Link>
+            <Link href='/' className='hover:text-[#ebf5ee]'>Cryptocurrencies</Link>
+            <Link href='/' className='hover:text-[#ebf5ee]'>Exchanges</Link>
+            <Link href='/' className='hover:text-[#ebf5ee]'>News</Link>
         </>
     )
 }
@@ -41,7 +41,7 @@ const Navbar = ({ }: Props) => {
                         <h1>Then<span className='text_gradient'>Crypto</span></h1>
                     </div>
                     
-                    <div className='flex flex-col justify-center hover:text-[#347fc4] cursor-pointer'>
+                    <div className='flex flex-col justify-center hover:text-[#ebf5ee] cursor-pointer'>
                         <button type='button' onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                             {isMobileMenuOpen ? <CloseIcon /> : <MenuBookIcon />}
                         </button>
