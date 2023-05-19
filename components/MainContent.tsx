@@ -8,11 +8,11 @@ import {
   useTransform,
   MotionValue
 } from "framer-motion";
-import Image from 'next/image';
 import { TrendingUpOutlined } from '@mui/icons-material';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
 
 
 const imagesArr = [TrendingUpOutlined, EqualizerIcon, AutoAwesomeIcon, AttachMoneyIcon]
@@ -30,31 +30,16 @@ const Imagez = ({id}: { id: number }) => {
   
 
   return (
-    <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory' id='motion_section'>
+    <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory snap-center' id='motion_section'>
         <div ref={ref} id='motion_div'>
             Decsriptions
         </div>
-        <motion.h2 style={{ y }} id='features'>
+        <motion.h2 className='' style={{ y }} id='features'>
             {`#00${id}`}
         </motion.h2>
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 type Props = {}
 
@@ -68,7 +53,7 @@ const MainContent = (props: Props) => {
 
     return (
         <>
-            {imagesArr.map((image, id) => (<Imagez id={image} key={id} />))}
+            {imagesArr.map((image, i) => (<Imagez id={image} key={i} />))}
             <motion.div className='fixed left-0 right-0 h-1 bg-white bottom-[100px]' style={{ scaleX }} />
 
             

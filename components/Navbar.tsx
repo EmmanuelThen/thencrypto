@@ -14,10 +14,10 @@ import CloseIcon from '@mui/icons-material/Close';
 const Menu = ({ }) => {
     return (
         <>
-            <Link href='/' className='hover:text-[#ebf5ee]'>Home</Link>
-            <Link href='/' className='hover:text-[#ebf5ee]'>Cryptocurrencies</Link>
-            <Link href='/' className='hover:text-[#ebf5ee]'>Exchanges</Link>
-            <Link href='/' className='hover:text-[#ebf5ee]'>News</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Home</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Cryptocurrencies</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Watchlist</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>News</Link>
         </>
     )
 }
@@ -48,8 +48,8 @@ const Navbar = ({ }: Props) => {
                     </div>
                     {isMobileMenuOpen && (
                         <>
-                            <div className='menu_wrapper fixed w-[100vw] top-0 right-0 mt-[7vh] shadow-lg '>
-                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10  '>
+                            <div className='menu_wrapper absolute w-[100vw] top-0 right-0 text-xs mt-[7vh] shadow-lg z-999'>
+                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10'>
                                     <Menu />
                                 </div>
                             </div>

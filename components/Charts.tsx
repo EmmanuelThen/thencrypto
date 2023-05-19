@@ -42,10 +42,6 @@ ChartJS.register(
 );
 
 
-
-
-
-
 type Props = {
     coinUuid: string,
     lineColor: string,

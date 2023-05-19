@@ -88,7 +88,7 @@ const Card = (props: Props) => {
             <div className="md:flex md:justify-center md:p-3">
                 
                 <div className="hero_wrapper h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full bg-[#347fc4] ">
-
+                    
                     {coins.map((coin) => (
 
                         <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">
