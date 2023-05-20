@@ -31,7 +31,7 @@ const Navbar = ({ }: Props) => {
 
     return (
         <>
-            <div className='p-4'>
+            <div className='p-4' id='grid'>
                 {/** Mobile Nav */}
                 <div className='flex justify-between md:hidden'>
                     <div id='top-logo'>

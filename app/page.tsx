@@ -8,6 +8,7 @@ import Sidebar from '@/components/Sidebar';
 import ParallaxText from '@/components/ParallaxText';
 import MainContent from '@/components/MainContent';
 import Features from '@/components/Features';
+import Title from '@/components/Title';
 
 
 
@@ -15,7 +16,7 @@ export default function Home() {
   return (
     <>
       <RootLayout>
-        <section className='h-screen snap-y snap-start snap-mandatory'>
+        <section className=' snap-y snap-start snap-mandatory'>
           <Navbar />
           <Hero />
           <ParallaxText baseVelocity={-3}>
@@ -27,15 +28,13 @@ export default function Home() {
         </section>
 
         <main className=' w-[100%]'>
-          <section className='h-screen snap-y snap-start snap-mandatory' id='canvas_container'>
-            <Features />
-          </section>
-
+          
+          <Features />
           <section className='h-screen snap-y snap-start snap-mandatory'>
             <MainContent />
           </section>
         </main>
-        
+
         <Footer />
       </RootLayout>
     </>
