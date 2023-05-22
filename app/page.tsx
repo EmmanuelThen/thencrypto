@@ -12,6 +12,7 @@ import Title from '@/components/Title';
 
 
 
+
 export default function Home() {
   return (
     <>
@@ -26,16 +27,9 @@ export default function Home() {
             Dogecoin • Solana • Polygon • TRON • Polkadot • Dai • Chainlink
           </ParallaxText>
         </section>
-
-        <main className=' w-[100%]'>
-          
-          <Features />
-          <section className='h-screen snap-y snap-start snap-mandatory'>
-            <MainContent />
-          </section>
-        </main>
-
-        <Footer />
+        <section className='w-[100%]'>
+          <MainContent />
+        </section>
       </RootLayout>
     </>
   )

@@ -13,7 +13,6 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
 import {
     Chart as ChartJS,
     CategoryScale,

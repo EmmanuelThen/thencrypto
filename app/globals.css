@@ -39,19 +39,12 @@ html {
 }
 
 .menu_popover {
-  background: #191716;
   transition: all 0s ease;
-  
-  /*box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;*/
-  
+  backdrop-filter: blur(15px);
+  z-index: 1051;
 }
 
 
-
-.menu_wrapper {
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-}
 
 .hero_wrapper {
   outline: 1px solid white;

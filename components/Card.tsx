@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import React from 'react'
 import Image from "next/image"
-import { Fab, Box } from "@mui/material"
+import { Fab } from "@mui/material"
 import { Popover } from "@mui/material"
 import Sidebar from "./Sidebar"
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -11,9 +11,7 @@ import { Line } from "react-chartjs-2"
 import Charts from "./Charts";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
-
-
+import { getCoinData } from '../api/coinRanking.js';
 
 type Props = {}
 
@@ -24,30 +22,17 @@ const Card = (props: Props) => {
 
     // const [count, setCount] = useState(number) for when user clicks on button it displays more coins url needs `limit=${count}`
 
+
     useEffect(() => {
-        const getCoinPrice = async () => {
+        const fetchCoinData = async () => {
+            const coinData = await getCoinData();
+            setCoins(coinData);
+        };
 
-            const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=100&offset=0'
-            const options = {
-                method: 'GET',
-                headers: {
-                    'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY,
-                    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-                }
-            };
+        fetchCoinData();
+    }, []);
 
-            try {
-                const response = await fetch(url, options);
-                const result = await response.json();
-                console.log(result);
-                setCoins(result.data.coins)
 
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        getCoinPrice();
-    }, [])
 
     {/** For popover button on each card */ }
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -85,10 +70,10 @@ const Card = (props: Props) => {
 
     return (
         <>
-            <div className="md:flex md:justify-center md:p-3">
-                
-                <div className="hero_wrapper h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full bg-[#347fc4] ">
-                    
+            <div className="md:flex md:justify-center md:p-3" id="grid">
+
+                <div className=" h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full ">
+
                     {coins.map((coin) => (
 
                         <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import { useRef } from "react";
+import Features from './Features';
 import {
     motion,
     useScroll,
@@ -9,16 +10,12 @@ import {
     MotionValue
 } from "framer-motion";
 
-
-
-
-
 const description = [
     'Display interactive price charts that show the historical price movements of cryptocurrencies over different timeframes (e.g., hours, days, weeks, months). Users can zoom in/out, scroll, and hover over data points to view detailed price information.',
     'Data visualization tools such as charts, graphs, and heatmaps for easy interpretation of complex data.',
     'Educational resources such as articles, tutorials, and videos for beginners and advanced users'
 ]
-const feature = ['Real Time Market Data', 'Interactive Charts', 'News & Insight']
+const feature = ['Real Time Market Data', 'Personal Watchlist', 'News & Insight']
 
 {/** To render each feature next to the description */}
 const featuresWithId = feature.map((item, i) => ({
@@ -26,24 +23,19 @@ const featuresWithId = feature.map((item, i) => ({
     name: item,
   }));
 
-
 const useParallax = (value: MotionValue<number>, distance: number) => {
     return useTransform(value, [0, 1], [-distance, distance])
 }
 
-{/** Image component */ }
+{/** Description component */ }
 const Description = ({ features, descriptions }: any) => {
-
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref });
     const y = useParallax(scrollYProgress, 300);
 
-
     return (
         <>
-            <motion.div
-            
-            >
+            <motion.div>
                 <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory snap-center' id='motion_section'>
                     <div className='hero_wrapper absolute top-0 left-0 right-0 bottom-0 w-full h-full' ref={ref} id='motion_div'>
                         {descriptions}
@@ -58,7 +50,7 @@ const Description = ({ features, descriptions }: any) => {
 }
 
 type Props = {}
-
+{/** Main component */}
 const MainContent = (props: Props) => {
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -73,8 +65,6 @@ const MainContent = (props: Props) => {
                 <Description descriptions={item} key={i} features={featuresWithId[i].name} />
             ))}
             <motion.div className='fixed left-0 right-0 h-1 bg-white bottom-[100px]' style={{ scaleX }} />
-
-
         </>
     )
 }

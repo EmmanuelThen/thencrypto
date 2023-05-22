@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
@@ -43,7 +44,7 @@ const Searchbar = (props: Props) => {
   return (
     <div>
         <div className='flex justify-center mt-10'>
-        <div className='w-[50%] mx-10 '>
+        <div className='w-[50%] mx-10'>
           <ThemeProvider theme={theme}>
             <Autocomplete
               value={searchCoin}

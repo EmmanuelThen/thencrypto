@@ -4,20 +4,16 @@ import MenuBookIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../images/thencrypto-logo.png'
-import { Autocomplete, TextField } from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import theme from '../theme';
 import CloseIcon from '@mui/icons-material/Close';
 
 
 const Menu = ({ }) => {
     return (
         <>
-            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Home</Link>
-            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Cryptocurrencies</Link>
-            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>Watchlist</Link>
-            <Link href='/' className='text-[#ebf5ee] hover:text-[#347fc4]'>News</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>Home</Link>
+            <Link href='/cryptocurrencies' className='text-[#ebf5ee] hover:text-[#191716]'>Cryptocurrencies</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>Watchlist</Link>
+            <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>News</Link>
         </>
     )
 }
@@ -48,8 +44,8 @@ const Navbar = ({ }: Props) => {
                     </div>
                     {isMobileMenuOpen && (
                         <>
-                            <div className='menu_wrapper absolute w-[100vw] top-0 right-0 text-xs mt-[7vh] shadow-lg z-999'>
-                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10'>
+                            <div className='menu_wrapper absolute w-[100vw] top-0 right-0 text-xs mt-[7vh] shadow-lg'>
+                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10' id='grid'>
                                     <Menu />
                                 </div>
                             </div>
