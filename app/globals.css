@@ -30,7 +30,7 @@ html {
 }
 
 #body {
-  background: #347fc4;
+  background: #ebf5ee;
   overflow-x: hidden;
 }
 
@@ -115,7 +115,7 @@ html {
 
 #features {
   margin: 0;
-  color: #ebf5ee;
+  color: #347fc4;
   left: calc(50% + 130px);
   
   font-weight: 700;
@@ -131,7 +131,7 @@ html {
 .btc {
   
   background: transparent;
-  stroke: aqua;
+  stroke: #fff;
   stroke-width: 10;
   stroke-linejoin: round;
   stroke-linecap: round;

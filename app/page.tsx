@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <RootLayout>
-        <section className=' snap-y snap-start snap-mandatory'>
+        <section className=' snap-y snap-start snap-mandatory bg-[#347fc4]'>
           <Navbar />
           <Hero />
           <ParallaxText baseVelocity={-3}>
@@ -26,6 +26,9 @@ export default function Home() {
           <ParallaxText baseVelocity={3}>
             Dogecoin • Solana • Polygon • TRON • Polkadot • Dai • Chainlink
           </ParallaxText>
+        </section>
+        <section>
+          <Title />
         </section>
         <section className='w-[100%]'>
           <MainContent />

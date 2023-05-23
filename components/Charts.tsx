@@ -139,9 +139,6 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    callback: (value: number, index: number, values: number) => {
-                        return '$' + value;
-                    },
                 },
                 grid: {
                     display: false,

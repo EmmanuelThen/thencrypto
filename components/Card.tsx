@@ -12,35 +12,40 @@ import Charts from "./Charts";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { getCoinData } from '../api/coinRanking.js';
+import Searchbar from "./Searchbar"
 
 type Props = {}
 
 const Card = (props: Props) => {
-    const [coins, setCoins] = useState([]);
-    const [selectedCoin, setselectedCoin] = useState(null)
-
-
-    // const [count, setCount] = useState(number) for when user clicks on button it displays more coins url needs `limit=${count}`
-
+    const [filteredCoins, setFilteredCoins] = useState([]);
+    const [selectedCoin, setselectedCoin] = useState(null);
+    const [originalCoins, setOriginalCoins] = useState([]);
 
     useEffect(() => {
         const fetchCoinData = async () => {
-            const coinData = await getCoinData();
-            setCoins(coinData);
+          const coinData = await getCoinData();
+          setFilteredCoins(coinData);
+          setOriginalCoins(coinData);
         };
-
+    
         fetchCoinData();
-    }, []);
+      }, []);
 
 
+      const handleSearchInputChange = (e) => {
+        const query = e.target.value;
+        const filtered = originalCoins.filter((coin) => {
+          return coin.name.toLowerCase().includes(query.toLowerCase());
+        });
+        setFilteredCoins(filtered);
+      };
 
     {/** For popover button on each card */ }
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>, coin: any) => {
         setAnchorEl(event.currentTarget);
-        setselectedCoin(coin) // To open graph for specific coin cards
+        setselectedCoin(coin) // To open graph for specific coin on card
 
     };
 
@@ -70,15 +75,15 @@ const Card = (props: Props) => {
 
     return (
         <>
+            <div className="mb-10">
+                <Searchbar filteredCoins={filteredCoins} setFilteredCoins={setFilteredCoins} handleSearchInputChange={handleSearchInputChange}
+ />
+            </div>
             <div className="md:flex md:justify-center md:p-3" id="grid">
-
                 <div className=" h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full ">
-
-                    {coins.map((coin) => (
-
+                    {filteredCoins.map((coin) => (
                         <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">
                             <div className="p-1 md:p-3">
-
                                 <div className="flex justify-between items-center mb-3">
                                     <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
                                     <div className="flex flex-col justify-center items-center">
@@ -113,7 +118,6 @@ const Card = (props: Props) => {
                                                             <CloseIcon />
                                                         </div>
                                                     </div>
-
                                                     <div className=" h-screen w-[358px] md:w-full md:p-20" id="chart_container">
                                                         <Charts
                                                             coinUuid={coin.uuid}
@@ -137,7 +141,6 @@ const Card = (props: Props) => {
                                             {Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(coin.price)}
                                         </span>
                                     </div>
-
                                     <div className='flex justify-between text-sm md:text-base'>
                                         <p className='text-gray-400'>Change:</p>
                                         <span className={coin.change >= 0 ? 'text-green-500 font-semibold' : 'text-red-500 font-semibold'}>
@@ -151,8 +154,6 @@ const Card = (props: Props) => {
                     ))}
                 </div >
             </div>
-
-
         </>
     )
 }

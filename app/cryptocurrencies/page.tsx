@@ -10,7 +10,6 @@ const Cryptocurrencies = (props: Props) => {
     return (
         <RootLayout>
             <Navbar />
-            <Searchbar />
             <Card />
         </RootLayout>
     )

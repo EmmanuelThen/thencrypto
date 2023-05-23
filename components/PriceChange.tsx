@@ -21,7 +21,7 @@ const icon = {
 
 
 const PriceChange = (props: Props) => {
-    const [price, setPrice] = useState(27890)
+    
 
     return (
         <div className='flex justify-center items-center '>

@@ -1,13 +1,11 @@
 'use client'
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { Autocomplete, TextField } from '@mui/material';
 import theme from '@/theme';
 
-type Props = {}
 
-const Searchbar = (props: Props) => {
+const Searchbar = ({filteredCoins, setFilteredCoins, handleSearchInputChange}) => {
   const [searchCoin, setSearchCoin] = useState('');
   const [coins, setCoins] = useState([]);
 
@@ -27,7 +25,8 @@ const Searchbar = (props: Props) => {
         try {
           const response = await fetch(url, options);
           const result = await response.text();
-          setCoins(JSON.parse(result).data.coins);
+          const filtered = JSON.parse(result).data.coins;
+          setFilteredCoins(filtered);
         } catch (error) {
           console.error(error);
         }
@@ -35,21 +34,23 @@ const Searchbar = (props: Props) => {
     }
 
     getCoins();
-  }, [searchCoin]);
+  }, [searchCoin, setFilteredCoins]);
 
-  const handleSearchInputChange = (e: any) => {
-    setSearchCoin(e.target.value);
-  }
+  
+
+  
+  
+
 
   return (
     <div>
-        <div className='flex justify-center mt-10'>
+      <div className='flex justify-center mt-10'>
         <div className='w-[50%] mx-10'>
           <ThemeProvider theme={theme}>
             <Autocomplete
               value={searchCoin}
               disableClearable
-              options={coins.map((coins) => coins.name)}
+              options={coins.map((coin) => coin.name)}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -59,7 +60,7 @@ const Searchbar = (props: Props) => {
                     type: 'search',
                   }}
                   onChange={handleSearchInputChange}
-                  className='shadow-lg'
+                  className='shadow-lg bg-white'
                 />
               )}
             />
