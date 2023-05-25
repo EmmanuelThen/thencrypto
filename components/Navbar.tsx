@@ -27,7 +27,7 @@ const Navbar = ({ }: Props) => {
 
     return (
         <>
-            <div className='p-4' id='grid'>
+            <div className='p-4 sticky top-0 bg-[#347fc4] z-[1500]'>
                 {/** Mobile Nav */}
                 <div className='flex justify-between md:hidden'>
                     <div id='top-logo'>
@@ -45,7 +45,7 @@ const Navbar = ({ }: Props) => {
                     {isMobileMenuOpen && (
                         <>
                             <div className='menu_wrapper absolute w-[100vw] top-0 right-0 text-xs mt-[7vh] shadow-lg'>
-                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10' id='grid'>
+                                <div className='menu_popover relative flex flex-col items-center p-5 gap-10'>
                                     <Menu />
                                 </div>
                             </div>

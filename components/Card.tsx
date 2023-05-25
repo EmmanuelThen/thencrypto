@@ -4,10 +4,8 @@ import React from 'react'
 import Image from "next/image"
 import { Fab } from "@mui/material"
 import { Popover } from "@mui/material"
-import Sidebar from "./Sidebar"
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CloseIcon from '@mui/icons-material/Close';
-import { Line } from "react-chartjs-2"
 import Charts from "./Charts";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -23,26 +21,25 @@ const Card = (props: Props) => {
 
     useEffect(() => {
         const fetchCoinData = async () => {
-          const coinData = await getCoinData();
-          setFilteredCoins(coinData);
-          setOriginalCoins(coinData);
+            const coinData = await getCoinData();
+            setFilteredCoins(coinData);
+            setOriginalCoins(coinData);
         };
-    
+
         fetchCoinData();
-      }, []);
+    }, []);
 
 
-      const handleSearchInputChange = (e) => {
+    const handleSearchInputChange = (e) => {
         const query = e.target.value;
         const filtered = originalCoins.filter((coin) => {
-          return coin.name.toLowerCase().includes(query.toLowerCase());
+            return coin.name.toLowerCase().includes(query.toLowerCase());
         });
         setFilteredCoins(filtered);
-      };
+    };
 
     {/** For popover button on each card */ }
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>, coin: any) => {
         setAnchorEl(event.currentTarget);
         setselectedCoin(coin) // To open graph for specific coin on card
@@ -56,8 +53,6 @@ const Card = (props: Props) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-
-
     {/** To format trillions, billions, and millions */ }
     const numberFormatter = (num) => {
         if (num >= 1000000000000) {
@@ -68,18 +63,18 @@ const Card = (props: Props) => {
             return (num / 1000000).toFixed(1) + 'M';
         }
         return num;
-
     }
-
-
 
     return (
         <>
             <div className="mb-10">
-                <Searchbar filteredCoins={filteredCoins} setFilteredCoins={setFilteredCoins} handleSearchInputChange={handleSearchInputChange}
- />
+                <Searchbar
+                    filteredCoins={filteredCoins}
+                    setFilteredCoins={setFilteredCoins}
+                    handleSearchInputChange={handleSearchInputChange}
+                />
             </div>
-            <div className="md:flex md:justify-center md:p-3" id="grid">
+            <div className="md:flex md:justify-center md:p-3">
                 <div className=" h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full ">
                     {filteredCoins.map((coin) => (
                         <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">
@@ -106,9 +101,9 @@ const Card = (props: Props) => {
                                             }}
                                             className="popover_container"
                                         >
-                                            <div className="w-screen h-screen">
-                                                <div className="popover_wrapper md:p-10">
-                                                    <div className="flex justify-between w-[358px] md:w-full p-2" id="top-title-div">
+                                            <div>
+                                                <div className="pr-8  my-20 w-screen">
+                                                    <div className="flex justify-between w-full p-2" id="top-title-div">
                                                         <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
                                                         <div className="flex flex-col items-center">
                                                             <h1 style={{ color: coin.color }}>{coin.symbol}</h1>
@@ -118,7 +113,7 @@ const Card = (props: Props) => {
                                                             <CloseIcon />
                                                         </div>
                                                     </div>
-                                                    <div className=" h-screen w-[358px] md:w-full md:p-20" id="chart_container">
+                                                    <div className="h-screen sm:p-20 md:w-full z-[1555]" id="chart_container">
                                                         <Charts
                                                             coinUuid={coin.uuid}
                                                             lineColor={coin.color}

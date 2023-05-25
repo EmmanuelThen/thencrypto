@@ -1,19 +1,11 @@
 'use client'
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { ThemeProvider } from '@emotion/react';
-import { Autocomplete, TextField } from '@mui/material';
-import theme from '@/theme';
 import PriceChange from './PriceChange';
 
-type Props = {}
 
-
-const Hero = (props: Props) => {
-
+const Hero = () => {
   return (
-
-    <div className='flex justify-around' id='grid'>
+    <div className='flex justify-around md:pt-10'>
       <div className=' flex flex-col p-5 gap-2'>
         <div className='text-[40px] md:text-[70px]'>
           <div className='flex ml-8 items-center '>
@@ -38,9 +30,6 @@ const Hero = (props: Props) => {
         </div>
       </div>
       <PriceChange />
-
-
-
     </div >
   )
 }

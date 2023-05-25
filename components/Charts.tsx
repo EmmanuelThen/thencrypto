@@ -52,7 +52,6 @@ type Props = {
 }
 
 const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume, coinRank }: Props) => {
-
     const [coinHistory, setCoinHistory] = useState([]);
     const [coinChange, setCoinChange] = useState([]);
     const [timeStamp, setTimeStamp] = useState('24h');
@@ -61,11 +60,8 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         setTimeStamp(event.target.value);
     };
 
-
-
     useEffect(() => {
         const getCoinHistory = async () => {
-
             const url = `https://coinranking1.p.rapidapi.com/coin/${coinUuid}/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=${timeStamp}`;
             const options = {
                 method: 'GET',
@@ -88,10 +84,9 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         getCoinHistory();
     }, [coinUuid, timeStamp]);
 
-
-    {/** Data for our line chart */ }
+    {/** Data for line chart */ }
     const data = {
-        labels: coinHistory.map((item: any) => new Date(item.timestamp * 1000).toLocaleDateString('en-US', {
+        labels: coinHistory.map((item) => new Date(item.timestamp * 1000).toLocaleDateString('en-US', {
             month: 'short',
             day: 'numeric',
             year: 'numeric',
@@ -99,15 +94,10 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         datasets: [
             {
                 label: 'Price',
-                data: coinHistory.map((item: any) => item.price).reverse(),
+                data: coinHistory.map((item) => item.price).reverse(),
                 borderColor: lineColor,
                 backgroundColor: lineColor,
                 borderWidth: 2,
-                fill: {
-                    target: 'origin',
-                    above: 'rgb(255, 0, 0)',   // Area will be red above the origin
-                    below: 'rgb(0, 0, 255)'    // And blue below the origin
-                }
             }
         ]
     }
@@ -122,33 +112,45 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
             },
         },
         scales: {
-            xAxes: [{
+            x: {
                 type: 'time',
                 time: {
-                    unit: 'day',
+                    unit: 'hour',
                     displayFormats: {
-                        day: 'MMM D',
-                        hour: timeStamp === '24h' ? 'hA' : 'MMM D',
+                        hour: (() => {
+                            switch (timeStamp) {
+                                case '24h':
+                                    return 'hA';
+                                case '7d':
+                                case '30d':
+                                    return 'MMM DD';
+                                case '3m':
+                                    return 'MMM DD'
+                                case '1y':
+                                case '3y':
+                                case '5y':
+                                    return 'MMM YYYY'
+                                default:
+                                    return 'MMM D YYYY';
+                            }
+                        })(),
                     },
                     tooltipFormat: "MMM D, YYYY, hA",
                 },
                 gridLines: {
                     display: false,
                 }
-            }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                },
-                grid: {
-                    display: false,
-                },
-                border: {
-                    display: false,
-                }
-            }],
+            },
         },
+        elements: {
+            point: {
+                radius: 0,
+            }
+        }
     };
+
+
+
 
     {/** To format trillions, billions, and millions */ }
     const numberFormatter = (num) => {

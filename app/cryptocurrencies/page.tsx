@@ -1,17 +1,19 @@
 import React from 'react';
 import Card from '@/components/Card';
-import RootLayout from '../layout';
-import Searchbar from '@/components/Searchbar';
-import Navbar from '@/components/Navbar';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 type Props = {}
 
 const Cryptocurrencies = (props: Props) => {
     return (
-        <RootLayout>
-            <Navbar />
-            <Card />
-        </RootLayout>
+        <>
+            <Suspense fallback={<Loading />}>
+                <main className='bg-[#347fc4]'>
+                    <Card />
+                </main>
+            </Suspense>
+        </>
     )
 }
 

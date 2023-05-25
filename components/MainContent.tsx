@@ -37,10 +37,10 @@ const Description = ({ features, descriptions }: any) => {
         <>
             <motion.div>
                 <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory snap-center' id='motion_section'>
-                    <div className='hero_wrapper absolute top-0 left-0 right-0 bottom-0 w-full h-full' ref={ref} id='motion_div'>
-                        {descriptions}
+                    <div className='hero_wrapper bg-[#ebf5ee] absolute top-0 left-0 right-0 bottom-0 w-[300px] h-[400px] md:w-[500px] md:h-[400px] p-5 shadow-xl' ref={ref} id='motion_div'>
+                        <p className='text-bold md:text-xl'>{descriptions}</p>
                     </div>
-                    <motion.h2 className='text-2xl tracking-tight md:tracking-[-3px] md:text-4xl lg:text-[56px]' style={{ y }} id='features'>
+                    <motion.h2 className='text_gradient text-2xl tracking-tight md:tracking-[-3px] md:text-4xl lg:text-[56px]' style={{ y }} id='features'>
                         <p>{features}</p>
                     </motion.h2>
                 </section>
@@ -64,7 +64,7 @@ const MainContent = (props: Props) => {
             {description.map((item, i) => (
                 <Description descriptions={item} key={i} features={featuresWithId[i].name} />
             ))}
-            <motion.div className='fixed left-0 right-0 h-1 bg-white bottom-[100px]' style={{ scaleX }} />
+            {/*<motion.div className='fixed left-0 right-0 h-1 bg-white bottom-[100px]' style={{ scaleX }} />*/}
         </>
     )
 }

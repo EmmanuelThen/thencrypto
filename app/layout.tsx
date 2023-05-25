@@ -18,11 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <html lang='en' >
-        <body className={inter.className} id="body">
+      <html lang='en' className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden'>
+        <body className={`${inter.className} bg-[#347fc4]`}>
+          <Navbar />
           {children}
         </body>
       </html>
     </>
   )
 }
+
+
