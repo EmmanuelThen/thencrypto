@@ -6,9 +6,6 @@ import ParallaxText from '@/components/ParallaxText';
 import MainContent from '@/components/MainContent';
 import Title from '@/components/Title';
 
-
-
-
 export default function Home() {
   return (
     <>

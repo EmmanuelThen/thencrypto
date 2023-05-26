@@ -25,7 +25,6 @@ import {
     TimeScale,
 
 } from 'chart.js';
-import Sidebar from './Sidebar';
 
 
 ChartJS.register(
@@ -39,7 +38,6 @@ ChartJS.register(
     TimeScale,
 
 );
-
 
 type Props = {
     coinUuid: string,
@@ -86,18 +84,15 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
 
     {/** Data for line chart */ }
     const data = {
-        labels: coinHistory.map((item) => new Date(item.timestamp * 1000).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-        })).reverse(),
+        labels: coinHistory.map((item) => new Date(item.timestamp * 1000).toLocaleDateString('en-US')).reverse(),
         datasets: [
             {
                 label: 'Price',
                 data: coinHistory.map((item) => item.price).reverse(),
                 borderColor: lineColor,
                 backgroundColor: lineColor,
-                borderWidth: 2,
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(0, 0, 0, 0.1)',
             }
         ]
     }
@@ -113,46 +108,45 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         },
         scales: {
             x: {
-                type: 'time',
-                time: {
-                    unit: 'hour',
-                    displayFormats: {
-                        hour: (() => {
-                            switch (timeStamp) {
-                                case '24h':
-                                    return 'hA';
-                                case '7d':
-                                case '30d':
-                                    return 'MMM DD';
-                                case '3m':
-                                    return 'MMM DD'
-                                case '1y':
-                                case '3y':
-                                case '5y':
-                                    return 'MMM YYYY'
-                                default:
-                                    return 'MMM D YYYY';
-                            }
-                        })(),
-                    },
-                    tooltipFormat: "MMM D, YYYY, hA",
-                },
-                gridLines: {
+                display: false,
+                grid: {
                     display: false,
-                }
+                },
+                time: {
+                    unit: (() => {
+                        switch (timeStamp) {
+                            case '24h':
+                                return 'hour';
+                            case '7d':
+                            case '30d':
+                                return 'day';
+                            case '3m':
+                            case '1y':
+                            case '3y':
+                            case '5y':
+                                return 'month';
+                            default:
+                                return 'day';
+                        }
+                    })(),
+                    tooltipFormat: 'MMM D, YYYY, hA',
+                },
+            },
+            y: {
+                display: false,
+                grid: {
+                    display: false,
+                },
             },
         },
         elements: {
             point: {
                 radius: 0,
-            }
-        }
+            },
+        },
     };
 
-
-
-
-    {/** To format trillions, billions, and millions */ }
+    {/** Function to format trillions, billions, and millions */ }
     const numberFormatter = (num) => {
         if (num >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T';
@@ -166,16 +160,13 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
     }
 
     return (
-
         <>
-
-            <div className='hero_wrapper'>
-                <div className='flex justify-between items-center'>
+            <div className=''>
+                <div className='flex justify-between items-center mb-10'>
                     <div>
-                        <span className='text-md md:text-4xl font-bold' style={{ color: lineColor }}>
+                        <span className='text-xl md:text-4xl font-bold' style={{ color: lineColor }}>
                             {coinPrice}
                         </span>
-
                         <div className='flex justify-between text-sm md:text-base'>
                             <p className='text-gray-400'>Change:</p>
                             <span className={coinChange >= 0 ? 'text-green-500 font-semibold' : 'text-red-500 font-semibold'}>
@@ -205,55 +196,44 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                         </FormControl>
                     </ThemeProvider>
                 </div>
-                <Line options={options} data={data} />
+                {coinHistory.length > 0 && <Line options={options} data={data} />}
             </div>
-
             <div className='hero_wrapper flex flex-col gap-2 items-center w-full mt-5 p-2 text-sm md:text-base' id='stats'>
-                <h1 className=' capitalize font-semibold'>{coinName} market stats</h1>
+                <h1 className='text-gray-400 capitalize font-semibold'>{coinName} market stats</h1>
                 <div className="flex justify-between w-full px-5">
                     <div>
                         <AttachMoneyIcon className='theme_color' /> <span>Current price</span>
                     </div>
-                    <div>
-                        {numberFormatter(`${coinPrice}`)}
+                    <div className='font-semibold'>
+                        {coinPrice}
                     </div>
                 </div>
-
                 <div className="flex justify-between w-full px-5">
                     <div>
                         <TrendingUpIcon className='theme_color' /> <span>Market cap</span>
                     </div>
-                    <div>
+                    <div className='font-semibold'>
                         <span>$</span>{numberFormatter(`${coinCap}`)}
                     </div>
                 </div>
-
                 <div className="flex justify-between w-full px-5">
                     <div>
                         <EqualizerIcon className='theme_color' /> <span>Volume</span>
                     </div>
-                    <div>
+                    <div className='font-semibold'>
                         <span>$</span>{numberFormatter(`${coinVolume}`)}
                     </div>
                 </div>
-
                 <div className="flex justify-between w-full px-5">
                     <div>
                         <AutoAwesomeIcon className='theme_color' /> <span>Popularity</span>
                     </div>
-                    <div>
+                    <div className='font-semibold'>
                         <span>#</span>{coinRank}
                     </div>
                 </div>
-
-
             </div>
-
-
-
-
         </>
-
     )
 }
 

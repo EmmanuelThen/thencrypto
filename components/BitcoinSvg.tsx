@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { motion } from 'framer-motion';
-
-
-type Props = {}
 
 const icon = {
     hidden: {
@@ -19,13 +14,10 @@ const icon = {
     }
   };
 
-
-const PriceChange = (props: Props) => {
+const PriceChange = ({}) => {
     
-
     return (
         <div className='flex justify-center items-center '>
-
             <motion.svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 512 512"
@@ -41,11 +33,8 @@ const PriceChange = (props: Props) => {
                         default: { duration: 3, ease: "easeInOut" },
                         fill: { duration: 2, ease: [1, 0, 0.8, 1] }
                     }}
-                    
                 />
-                
             </motion.svg>
-
         </div>
     )
 }
