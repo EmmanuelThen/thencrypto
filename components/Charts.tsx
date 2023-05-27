@@ -45,9 +45,24 @@ type Props = {
     coinName: string,
     coinPrice: string,
     coinCap: string,
-    coinVolume: string,
-    coinRank: string,
+    coinVolume: string | number,
+    coinRank: number,
 }
+
+interface CoinHistory {
+    uuid: string;
+    name: string;
+    symbol: string;
+    iconUrl: string;
+    color: string;
+    price: string;
+    change: number;
+    rank: number;
+    marketCap: string;
+    ['24hVolume']: number;
+    timestamp: number;
+    
+  }
 
 const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume, coinRank }: Props) => {
     const [coinHistory, setCoinHistory] = useState([]);
@@ -84,11 +99,11 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
 
     {/** Data for line chart */ }
     const data = {
-        labels: coinHistory.map((item) => new Date(item.timestamp * 1000).toLocaleDateString('en-US')).reverse(),
+        labels: coinHistory.map((item: CoinHistory) => new Date(item.timestamp * 1000).toLocaleDateString('en-US')).reverse(),
         datasets: [
             {
                 label: 'Price',
-                data: coinHistory.map((item) => item.price).reverse(),
+                data: coinHistory.map((item: CoinHistory) => item.price).reverse(),
                 borderColor: lineColor,
                 backgroundColor: lineColor,
                 borderWidth: 1,
@@ -141,13 +156,13 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         },
         elements: {
             point: {
-                radius: 0,
+                radius: 1,
             },
         },
     };
 
     {/** Function to format trillions, billions, and millions */ }
-    const numberFormatter = (num) => {
+    const numberFormatter = (num: number) => {
         if (num >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T';
         } else if (num >= 1000000000) {
@@ -161,7 +176,7 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
 
     return (
         <>
-            <div className=''>
+            <div className='graph_wrapper mx-3 rounded-md cards p-1 lg:p-10'>
                 <div className='flex justify-between items-center mb-10'>
                     <div>
                         <span className='text-xl md:text-4xl font-bold' style={{ color: lineColor }}>
@@ -198,38 +213,40 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                 </div>
                 {coinHistory.length > 0 && <Line options={options} data={data} />}
             </div>
-            <div className='hero_wrapper flex flex-col gap-2 items-center w-full mt-5 p-2 text-sm md:text-base' id='stats'>
-                <h1 className='text-gray-400 capitalize font-semibold'>{coinName} market stats</h1>
-                <div className="flex justify-between w-full px-5">
-                    <div>
-                        <AttachMoneyIcon className='theme_color' /> <span>Current price</span>
+            <div className='mx-3'>
+                <div className='graph_wrapper cards flex flex-col gap-2 items-center w-full mt-5 p-2 text-sm md:text-base' id='stats'>
+                    <h1 className='text-gray-400 capitalize font-semibold'>{coinName} market stats</h1>
+                    <div className="flex justify-between w-full px-5">
+                        <div>
+                            <AttachMoneyIcon className='theme_color' /> <span>Current price</span>
+                        </div>
+                        <div className='font-semibold'>
+                            {coinPrice}
+                        </div>
                     </div>
-                    <div className='font-semibold'>
-                        {coinPrice}
+                    <div className="flex justify-between w-full px-5">
+                        <div>
+                            <TrendingUpIcon className='theme_color' /> <span>Market cap</span>
+                        </div>
+                        <div className='font-semibold'>
+                            <span>$</span>{numberFormatter(`${coinCap}`)}
+                        </div>
                     </div>
-                </div>
-                <div className="flex justify-between w-full px-5">
-                    <div>
-                        <TrendingUpIcon className='theme_color' /> <span>Market cap</span>
+                    <div className="flex justify-between w-full px-5">
+                        <div>
+                            <EqualizerIcon className='theme_color' /> <span>Volume</span>
+                        </div>
+                        <div className='font-semibold'>
+                            <span>$</span>{numberFormatter(`${coinVolume}`)}
+                        </div>
                     </div>
-                    <div className='font-semibold'>
-                        <span>$</span>{numberFormatter(`${coinCap}`)}
-                    </div>
-                </div>
-                <div className="flex justify-between w-full px-5">
-                    <div>
-                        <EqualizerIcon className='theme_color' /> <span>Volume</span>
-                    </div>
-                    <div className='font-semibold'>
-                        <span>$</span>{numberFormatter(`${coinVolume}`)}
-                    </div>
-                </div>
-                <div className="flex justify-between w-full px-5">
-                    <div>
-                        <AutoAwesomeIcon className='theme_color' /> <span>Popularity</span>
-                    </div>
-                    <div className='font-semibold'>
-                        <span>#</span>{coinRank}
+                    <div className="flex justify-between w-full px-5">
+                        <div>
+                            <AutoAwesomeIcon className='theme_color' /> <span>Popularity</span>
+                        </div>
+                        <div className='font-semibold'>
+                            <span>#</span>{coinRank}
+                        </div>
                     </div>
                 </div>
             </div>

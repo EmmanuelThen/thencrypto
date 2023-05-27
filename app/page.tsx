@@ -1,15 +1,13 @@
-import Image from 'next/image'
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import RootLayout from './layout';
+import Hero from '@/components/Hero';
 import ParallaxText from '@/components/ParallaxText';
 import MainContent from '@/components/MainContent';
 import Title from '@/components/Title';
+import Card from '@/components/Card';
 
 export default function Home() {
   return (
     <>
-      <section className=' snap-center bg-[#347fc4]'>
+      <section className='snap-start bg-[#347fc4]'>
         <Hero />
         <ParallaxText baseVelocity={-3}>
           Bitcoin • Ethereum • Litecoin • Tether • BNB • XRP • Cardano
@@ -17,8 +15,9 @@ export default function Home() {
         <ParallaxText baseVelocity={3}>
           Dogecoin • Solana • Polygon • TRON • Polkadot • Dai • Chainlink
         </ParallaxText>
-        <section>
+        <section className='p-5'>
           <Title />
+          <Card amountOfCoins={4} display='hidden' mdColsNum='md:grid-cols-4' lgColsNum='md:grid-cols-4'/>
         </section>
       </section>
       <section className='w-[100%]'>

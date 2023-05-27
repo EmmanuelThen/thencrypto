@@ -1,6 +1,6 @@
 // Getting all coins data
-export const getCoinData = async () => {
-    const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=100&offset=0';
+export const getCoinData = async (num) => {
+    const url = `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=${num}&offset=0`;
     const options = {
         method: 'GET',
         headers: {

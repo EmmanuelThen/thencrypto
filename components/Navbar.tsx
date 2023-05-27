@@ -12,7 +12,6 @@ const Menu = ({ }) => {
         <>
             <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>Home</Link>
             <Link href='/cryptocurrencies' className='text-[#ebf5ee] hover:text-[#191716]'>Cryptocurrencies</Link>
-            <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>Watchlist</Link>
             <Link href='/' className='text-[#ebf5ee] hover:text-[#191716]'>News</Link>
         </>
     )

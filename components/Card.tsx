@@ -11,28 +11,47 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { getCoinData } from '../api/coinRanking.js';
 import Searchbar from "./Searchbar"
+import Sidebar from "./Sidebar"
 
-type Props = {}
+type Props = {
+    amountOfCoins: number,
+    display: string,
+    mdColsNum: string,
+    lgColsNum: string,
+}
 
-const Card = (props: Props) => {
+interface Coin {
+    uuid: string;
+    name: string;
+    symbol: string;
+    iconUrl: string;
+    color: string;
+    price: string;
+    change: number;
+    rank: number;
+    marketCap: string;
+    ['24hVolume']: number;
+  }
+
+const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
     const [filteredCoins, setFilteredCoins] = useState([]);
     const [selectedCoin, setselectedCoin] = useState(null);
     const [originalCoins, setOriginalCoins] = useState([]);
 
     useEffect(() => {
         const fetchCoinData = async () => {
-            const coinData = await getCoinData();
+            const coinData = await getCoinData(amountOfCoins);
             setFilteredCoins(coinData);
             setOriginalCoins(coinData);
         };
 
         fetchCoinData();
-    }, []);
+    }, [amountOfCoins]);
 
 
-    const handleSearchInputChange = (e) => {
+    const handleSearchInputChange = (e: any) => {
         const query = e.target.value;
-        const filtered = originalCoins.filter((coin) => {
+        const filtered = originalCoins.filter((coin: Coin) => {
             return coin.name.toLowerCase().includes(query.toLowerCase());
         });
         setFilteredCoins(filtered);
@@ -40,10 +59,10 @@ const Card = (props: Props) => {
 
     {/** For popover button on each card */ }
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>, coin: any) => {
         setAnchorEl(event.currentTarget);
         setselectedCoin(coin) // To open graph for specific coin on card
-
     };
 
     const handleClose = () => {
@@ -54,7 +73,7 @@ const Card = (props: Props) => {
     const id = open ? 'simple-popover' : undefined;
 
     {/** To format trillions, billions, and millions */ }
-    const numberFormatter = (num) => {
+    const numberFormatter = (num: number) => {
         if (num >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T';
         } else if (num >= 1000000000) {
@@ -64,10 +83,10 @@ const Card = (props: Props) => {
         }
         return num;
     }
-
+ 
     return (
         <>
-            <div className="mb-10">
+            <div className={`${display} mb-10`}>
                 <Searchbar
                     filteredCoins={filteredCoins}
                     setFilteredCoins={setFilteredCoins}
@@ -75,9 +94,12 @@ const Card = (props: Props) => {
                 />
             </div>
             <div className="md:flex md:justify-center md:p-3">
-                <div className=" h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:p-0 md:w-full ">
-                    {filteredCoins.map((coin) => (
-                        <div key={coin.uuid} className="cards    h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm ">
+                <div className={`h-full grid grid-cols-2 ${mdColsNum} ${lgColsNum} lg:p-0 md:w-full`}>
+                    {filteredCoins.map((coin: Coin) => (
+                        <div 
+                            key={coin.uuid} 
+                            className="fade-in-fwd hover:scale-105 hover:transition-all hover:duration-125 ease-in-out cards h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm"
+                        >
                             <div className="p-1 md:p-3">
                                 <div className="flex justify-between items-center mb-3">
                                     <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
@@ -102,16 +124,17 @@ const Card = (props: Props) => {
                                             className="popover_container"
                                         >
                                             <div>
-                                                <div className="pr-8  my-20 w-screen">
+                                                <div className="pr-8 my-20 w-screen">
                                                     <div className="flex justify-between w-full p-2" id="top-title-div">
                                                         <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
                                                         <div className="flex flex-col items-center">
                                                             <h1 style={{ color: coin.color }}>{coin.symbol}</h1>
                                                             <h1 className="text-gray-400">{coin.name}</h1>
                                                         </div>
-                                                        <div className="flex items-center">
+                                                        <button className="flex items-center cursor-pointer hover:text-[#347fc4]" type="button" onClick={handleClose}>
                                                             <CloseIcon />
-                                                        </div>
+                                                        </button>
+                                                        
                                                     </div>
                                                     <div className="h-screen sm:p-20 md:w-full z-[1555]" id="chart_container">
                                                         <Charts
@@ -132,7 +155,7 @@ const Card = (props: Props) => {
                                 </div>
                                 <div>
                                     <div className="flex justify-center mb-3 md:mb-8">
-                                        <span className='text-xl md:text-3xl font-bold' style={{ color: coin.color }}>
+                                        <span className='text-xl md:text-2xl font-bold' style={{ color: coin.color }}>
                                             {Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(coin.price)}
                                         </span>
                                     </div>

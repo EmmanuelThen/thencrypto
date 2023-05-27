@@ -4,11 +4,11 @@ type Props = {}
 
 const Title = (props: Props) => {
     return (
-        <div className='p-20'>
+        <div className=''>
             <div className='flex justify-center items-center h-[100px]'>
                 <div className='flex items-center'>
                     <span className='text_gradient text-[#347fc4] text-[60px] py-6'>[</span>
-                    <h1 className='text-white font-semibold  text-4xl mx-5'>Features</h1>
+                    <h1 className='text-white font-semibold  text-4xl mx-5'>Top Coins</h1>
                     <span className='text_gradient text-[#347fc4] text-[60px] py-6'>]</span>
                 </div>
             </div>

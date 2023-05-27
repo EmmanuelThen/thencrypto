@@ -15,7 +15,7 @@ const description = [
     'The watchlist feature on our crypto website empowers users to stay updated on their favorite cryptocurrencies effortlessly. By leveraging this tool, users can create a personalized list of cryptocurrencies they want to monitor closely.',
     'Educational resources such as articles, tutorials, and videos for beginners and advanced users'
 ]
-const feature = ['Real Time Market Data', 'Personal Watchlist', 'News & Insight']
+const feature = ['Real Time Market Data', 'Interactive Graphs', 'News & Insight']
 
 {/** To render each feature next to the description */}
 const featuresWithId = feature.map((item, i) => ({
