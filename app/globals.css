@@ -11,6 +11,10 @@
   }
 }
 
+.theme_color {
+  color: #347fc4;
+}
+
 .menu_popover {
   transition: all 0s ease;
   backdrop-filter: blur(15px);
@@ -99,6 +103,3 @@
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-
-
-
