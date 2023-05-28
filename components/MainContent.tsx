@@ -1,17 +1,15 @@
 'use client'
 import React from 'react';
 import { useRef } from "react";
-import Features from './Features';
 import {
     motion,
     useScroll,
-    useSpring,
     useTransform,
     MotionValue
 } from "framer-motion";
 
 const description = [
-    'Display interactive price charts that show the historical price movements of cryptocurrencies over different timeframes. Users can zoom in/out, scroll, and hover over data points to view detailed price information.',
+    'Display interactive price charts that show the historical price movements of cryptocurrencies over different timeframes. With our charts you can hover over data points to view detailed price information.',
     'The watchlist feature on our crypto website empowers users to stay updated on their favorite cryptocurrencies effortlessly. By leveraging this tool, users can create a personalized list of cryptocurrencies they want to monitor closely.',
     'Educational resources such as articles, tutorials, and videos for beginners and advanced users'
 ]
@@ -49,22 +47,14 @@ const Description = ({ features, descriptions }: any) => {
     );
 }
 
-type Props = {}
-{/** Main component */}
-const MainContent = (props: Props) => {
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
 
+{/** Main component */}
+const MainContent = ({}) => {
     return (
         <>
             {description.map((item, i) => (
                 <Description descriptions={item} key={i} features={featuresWithId[i].name} />
             ))}
-            {/*<motion.div className='fixed left-0 right-0 h-1 bg-white bottom-[100px]' style={{ scaleX }} />*/}
         </>
     )
 }

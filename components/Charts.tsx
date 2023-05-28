@@ -60,9 +60,10 @@ interface CoinHistory {
     rank: number;
     marketCap: string;
     ['24hVolume']: number;
-    timestamp: string;
-    
-  }
+    timestamp: number;
+}
+
+const apiKey = process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY as string;
 
 const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume, coinRank }: Props) => {
     const [coinHistory, setCoinHistory] = useState([]);
@@ -79,7 +80,7 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY,
+                    'X-RapidAPI-Key': apiKey,
                     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
                 }
             };
@@ -124,34 +125,9 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
         scales: {
             x: {
                 display: false,
-                grid: {
-                    display: false,
-                },
-                time: {
-                    unit: (() => {
-                        switch (timeStamp) {
-                            case '24h':
-                                return 'hour';
-                            case '7d':
-                            case '30d':
-                                return 'day';
-                            case '3m':
-                            case '1y':
-                            case '3y':
-                            case '5y':
-                                return 'month';
-                            default:
-                                return 'day';
-                        }
-                    })(),
-                    tooltipFormat: 'MMM D, YYYY, hA',
-                },
             },
             y: {
                 display: false,
-                grid: {
-                    display: false,
-                },
             },
         },
         elements: {
@@ -213,8 +189,8 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                 </div>
                 {coinHistory.length > 0 && <Line options={options} data={data} />}
             </div>
-            <div className='mx-3'>
-                <div className='graph_wrapper cards flex flex-col gap-2 items-center w-full mt-5 p-2 text-sm md:text-base' id='stats'>
+            <div className='mx-3 lg:flex lg:justify-center'>
+                <div className='graph_wrapper cards flex flex-col gap-2 items-center w-full lg:w-[50%]  mt-5 p-2 text-sm md:text-base' id='stats'>
                     <h1 className='text-gray-400 capitalize font-semibold'>{coinName} market stats</h1>
                     <div className="flex justify-between w-full px-5">
                         <div>

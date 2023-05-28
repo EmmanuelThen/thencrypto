@@ -7,10 +7,10 @@ type Props = {
   coinName: string,
 }
 
+const apiKey = process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY as string;
+
 const Sidebar = ({ coinName }: Props) => {
   const [news, setNews] = useState([]);
-
-
 
   {/** To call our API */ }
   useEffect(() => {
@@ -20,7 +20,7 @@ const Sidebar = ({ coinName }: Props) => {
         method: 'GET',
         headers: {
           'X-BingApis-SDK': 'true',
-          'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY,
+          'X-RapidAPI-Key': apiKey,
           'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
         }
       };
@@ -44,7 +44,7 @@ const Sidebar = ({ coinName }: Props) => {
         <h1 className='text-xl p-2  text-gray-400 tracking-[5px]'>Top {coinName} News</h1>
       </div>
       <div className='hero_wrapper flex text-xs overflow-x-scroll p-3 lg:p-10 md:text-sm lg:text-base  scroll-smooth'>
-        {news.map((news) => (
+        {news.map((news: any) => (
           <div className='cards graph_wrapper flex flex-col items-center justify-center gap-3 p-5 mr-3 lg:mr-10  md:mb-3 min-w-full sm:text-sm lg:text-base md:p-5 text-black md:text-center' key={news.news_ID}>
             <div className='text-center font-semibold'>
               {news.name}

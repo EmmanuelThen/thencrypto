@@ -4,8 +4,15 @@ import { ThemeProvider } from '@emotion/react';
 import { Autocomplete, TextField } from '@mui/material';
 import theme from '@/theme';
 
+type Props = {
+  filteredCoins: any,
+  setFilteredCoins: any,
+  handleSearchInputChange: any
+}
 
-const Searchbar = ({ filteredCoins, setFilteredCoins, handleSearchInputChange }) => {
+const apiKey = process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY as string;
+
+const Searchbar = ({ filteredCoins, setFilteredCoins, handleSearchInputChange }: Props) => {
   const [searchCoin, setSearchCoin] = useState('');
 
   useEffect(() => {
@@ -15,11 +22,10 @@ const Searchbar = ({ filteredCoins, setFilteredCoins, handleSearchInputChange })
         const options = {
           method: 'GET',
           headers: {
-            'X-RapidAPI-Key': process.env.NEXT_PUBLIC_COIN_SEARCH_API_KEY,
+            'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
           }
         };
-
         try {
           const response = await fetch(url, options);
           const result = await response.text();
@@ -43,7 +49,7 @@ const Searchbar = ({ filteredCoins, setFilteredCoins, handleSearchInputChange })
               value={searchCoin}
               disablePortal
               disableClearable
-              options={filteredCoins.map((coin) => coin.name)}
+              options={filteredCoins.map((coin: any) => coin.name)}
               renderInput={(params) => (
                 <TextField
                   {...params}

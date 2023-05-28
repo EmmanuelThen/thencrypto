@@ -27,7 +27,7 @@ interface Coin {
     symbol: string;
     iconUrl: string;
     color: string;
-    price: string;
+    price: number;
     change: number;
     rank: number;
     marketCap: string;
@@ -49,7 +49,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
         fetchCoinData();
     }, [amountOfCoins]);
 
-
+    {/* To narrow down coins while searching in Searchbar*/}
     const handleSearchInputChange = (e: any) => {
         const query = e.target.value;
         const filtered = originalCoins.filter((coin: Coin) => {
@@ -146,7 +146,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                                             coinVolume={numberFormatter(coin['24hVolume'])}
                                                             coinRank={coin.rank}
                                                         />
-                                                        {/*<News coinName={coin.name} />*/}
+                                                        <News coinName={coin.name} />
                                                     </div>
                                                 </div>
                                             </div>

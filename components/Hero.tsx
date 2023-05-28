@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
-import PriceChange from './BitcoinSvg';
-
+import Bitcoin from './BitcoinSvg';
 
 const Hero = () => {
   return (
@@ -29,7 +28,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <PriceChange />
+      <Bitcoin />
     </div >
   )
 }

@@ -9,24 +9,6 @@
   .perspective-500 {
     perspective: 500px;
   }
-
-  .snap-y {
-    scroll-snap-type: y mandatory;
-  }
-
-  .snap-center {
-    scroll-snap-align: center;
-  }
-}
-
-.theme_color {
-  color: #347fc4;
-}
-
-
-
-#top-image {
-  border-radius: 50%;
 }
 
 .menu_popover {
@@ -39,7 +21,6 @@
   background:#EFF1ED;
   border-radius: 7px;
 }
-
 
 .hero_wrapper {
   outline: 1px solid #347fc4;
@@ -78,7 +59,6 @@
   }
 }
 
-
 .parallax {
   overflow: hidden;
   letter-spacing: -2px;
@@ -98,9 +78,6 @@
   overflow: hidden;
 }
 
-
-
-
 #motion_section {
   perspective: 500px;
   
@@ -113,10 +90,6 @@
   font-weight: 700;
   line-height: 1.2;
   position: absolute;
-}
-
-#grid {
-  background-image: url(../images/grid.svg);
 }
 
 .btc {

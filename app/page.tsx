@@ -1,8 +1,7 @@
 import Hero from '@/components/Hero';
 import ParallaxText from '@/components/ParallaxText';
-import MainContent from '@/components/MainContent';
-import Title from '@/components/Title';
 import Card from '@/components/Card';
+import MainContent from '@/components/MainContent';
 
 export default function Home() {
   return (
@@ -16,8 +15,7 @@ export default function Home() {
           Dogecoin • Solana • Polygon • TRON • Polkadot • Dai • Chainlink
         </ParallaxText>
         <section className='p-5'>
-          
-          <Card amountOfCoins={4} display='hidden' mdColsNum='md:grid-cols-4' lgColsNum='md:grid-cols-4'/>
+          <Card amountOfCoins={4} display='hidden' mdColsNum='md:grid-cols-4' lgColsNum='md:grid-cols-4' />
         </section>
       </section>
       <section className='w-[100%]'>
