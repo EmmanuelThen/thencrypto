@@ -10,10 +10,10 @@ import {
 
 const description = [
     'Display interactive price charts that show the historical price movements of cryptocurrencies over different timeframes. With our charts you can hover over data points to view detailed price information.',
-    'The watchlist feature on our crypto website empowers users to stay updated on their favorite cryptocurrencies effortlessly. By leveraging this tool, users can create a personalized list of cryptocurrencies they want to monitor closely.',
-    'Educational resources such as articles, tutorials, and videos for beginners and advanced users'
+    'We provide users with a visually engaging and informative way to track and analyze cryptocurrency data. Our charts are designed to empower you with the tools needed to make informed trading decisions and understand the market dynamics.',
+    'Educational resources such as articles and videos for beginners and advanced users. Stay up to date with the latest news and gain valuable insights into the ever-evolving world of cryptocurrencies.'
 ]
-const feature = ['Real Time Market Data', 'Interactive Graphs', 'News & Insight']
+const feature = ['Real Time Market Data', 'Interactive Charts', 'News & Insight']
 
 {/** To render each feature next to the description */}
 const featuresWithId = feature.map((item, i) => ({
