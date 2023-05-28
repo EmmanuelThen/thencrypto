@@ -60,7 +60,7 @@ interface CoinHistory {
     rank: number;
     marketCap: string;
     ['24hVolume']: number;
-    timestamp: number;
+    timestamp: string;
     
   }
 
@@ -162,7 +162,7 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
     };
 
     {/** Function to format trillions, billions, and millions */ }
-    const numberFormatter = (num: number) => {
+    const numberFormatter = (num: any) => {
         if (num >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T';
         } else if (num >= 1000000000) {
@@ -191,7 +191,7 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                         </div>
                     </div>
                     <ThemeProvider theme={theme}>
-                        <FormControl sx={{ minWidth: 120 }} size="small">
+                        <FormControl sx={{ minWidth: 80 }} size="small">
                             <InputLabel id="demo-select-small-label" style={{ color: lineColor }}>Timeframe</InputLabel>
                             <Select
                                 labelId="demo-select-small-label"

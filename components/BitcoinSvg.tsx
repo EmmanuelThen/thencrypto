@@ -21,7 +21,7 @@ const PriceChange = ({}) => {
             <motion.svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 512 512"
-                className='btc w-[120px] h-[120px] md:w-[200px] md:h-[200px] lg:w-[350px] lg:h-[350px]'
+                className='btc w-[120px] h-[120px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[350px]'
                 
             >
                 <motion.path 

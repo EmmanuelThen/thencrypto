@@ -26,7 +26,7 @@ const Navbar = ({ }: Props) => {
 
     return (
         <>
-            <div className='p-4 sticky top-0 bg-[#347fc4] z-[1500]'>
+            <div className='p-4 sticky top-0 bg-[#347fc4] z-[2]'>
                 {/** Mobile Nav */}
                 <div className='flex justify-between md:hidden'>
                     <div id='top-logo'>

@@ -7,7 +7,7 @@ import Card from '@/components/Card';
 export default function Home() {
   return (
     <>
-      <section className='snap-start bg-[#347fc4]'>
+      <section className='snap-center bg-[#347fc4]'>
         <Hero />
         <ParallaxText baseVelocity={-3}>
           Bitcoin • Ethereum • Litecoin • Tether • BNB • XRP • Cardano
@@ -16,7 +16,7 @@ export default function Home() {
           Dogecoin • Solana • Polygon • TRON • Polkadot • Dai • Chainlink
         </ParallaxText>
         <section className='p-5'>
-          <Title />
+          
           <Card amountOfCoins={4} display='hidden' mdColsNum='md:grid-cols-4' lgColsNum='md:grid-cols-4'/>
         </section>
       </section>

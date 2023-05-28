@@ -11,7 +11,8 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';;
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { getCoinData } from '../api/coinRanking.js';
 import Searchbar from "./Searchbar"
-import Sidebar from "./Sidebar"
+import News from './News';
+
 
 type Props = {
     amountOfCoins: number,
@@ -73,7 +74,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
     const id = open ? 'simple-popover' : undefined;
 
     {/** To format trillions, billions, and millions */ }
-    const numberFormatter = (num: number) => {
+    const numberFormatter = (num: any) => {
         if (num >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T';
         } else if (num >= 1000000000) {
@@ -98,7 +99,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                     {filteredCoins.map((coin: Coin) => (
                         <div 
                             key={coin.uuid} 
-                            className="fade-in-fwd hover:scale-105 hover:transition-all hover:duration-125 ease-in-out cards h-fit p-1 md:p-0 m-2 rounded-lg md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm"
+                            className="hover:scale-105 hover:transition-all hover:duration-125 ease-in-out cards h-fit p-1 md:p-0 m-2 rounded-[7px] md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm"
                         >
                             <div className="p-1 md:p-3">
                                 <div className="flex justify-between items-center mb-3">
@@ -109,7 +110,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                         <div className="h-[1px] bg-gray-300 w-full" />
                                     </div>
                                     <div className="">
-                                        <Fab id={id} size="small" style={{ color: coin.color }} aria-label="add" onClick={(event) => handleClick(event, coin)}>
+                                        <Fab className="z-0" id={id} size="small" style={{ color: coin.color }} aria-label="add" onClick={(event) => handleClick(event, coin)}>
                                             <TrendingUpIcon />
                                         </Fab>
                                         <Popover
@@ -124,9 +125,9 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                             className="popover_container"
                                         >
                                             <div>
-                                                <div className="pr-8 my-20 w-screen">
-                                                    <div className="flex justify-between w-full p-2" id="top-title-div">
-                                                        <Image src={coin.iconUrl} alt="coin logo" width={30} height={30} />
+                                                <div className="pr-8 w-screen">
+                                                    <div className="flex justify-between w-full p-2 mt-3" id="top-title-div">
+                                                        <Image src={coin.iconUrl} alt="coin-logo" width={30} height={30} />
                                                         <div className="flex flex-col items-center">
                                                             <h1 style={{ color: coin.color }}>{coin.symbol}</h1>
                                                             <h1 className="text-gray-400">{coin.name}</h1>
@@ -134,9 +135,8 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                                         <button className="flex items-center cursor-pointer hover:text-[#347fc4]" type="button" onClick={handleClose}>
                                                             <CloseIcon />
                                                         </button>
-                                                        
                                                     </div>
-                                                    <div className="h-screen sm:p-20 md:w-full z-[1555]" id="chart_container">
+                                                    <div className="h-screen sm:p-20 md:w-full" id="chart_container">
                                                         <Charts
                                                             coinUuid={coin.uuid}
                                                             lineColor={coin.color}
@@ -146,7 +146,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                                             coinVolume={numberFormatter(coin['24hVolume'])}
                                                             coinRank={coin.rank}
                                                         />
-                                                        {/*<Sidebar coinName={coin.name} />*/}
+                                                        {/*<News coinName={coin.name} />*/}
                                                     </div>
                                                 </div>
                                             </div>
