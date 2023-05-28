@@ -18,3 +18,8 @@ ThenCrypto is my take on a crypto website that provides real-time market data, i
 - Framer Motion
 - Material UI
 - Tailwind CSS
+
+## API's Used
+
+- Coinranking
+- Bing news search
