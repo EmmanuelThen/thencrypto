@@ -84,7 +84,6 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
                 }
             };
-
             try {
                 const response = await fetch(url, options);
                 const result = await response.json();
@@ -160,8 +159,8 @@ const Charts = ({ coinUuid, lineColor, coinName, coinPrice, coinCap, coinVolume,
                         </span>
                         <div className='flex justify-between text-sm md:text-base'>
                             <p className='text-gray-400'>Change:</p>
-                            <span className={coinChange >= 0 ? 'text-green-500 font-semibold' : 'text-red-500 font-semibold'}>
-                                {coinChange >= 0 ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                            <span className={Number(coinChange) >= 0 ? 'text-green-500 font-semibold' : 'text-red-500 font-semibold'}>
+                                {Number(coinChange) >= 0 ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                                 {`${coinChange}%`}
                             </span>
                         </div>

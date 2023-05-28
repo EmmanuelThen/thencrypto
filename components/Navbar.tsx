@@ -24,7 +24,7 @@ const Navbar = ({ }) => {
                 {/** Mobile Nav */}
                 <nav className='flex justify-between md:hidden'>
                     <div id='top-logo'>
-                        <Image src={logo} alt='ThenCrypto-logo' width={40}/>
+                        <Image src={logo} alt='ThenCrypto-logo' width={40} />
                     </div>
                     <div className='flex justify-center items-center'>
                         <h1>Then<span className='text_gradient'>Crypto</span></h1>
@@ -52,7 +52,7 @@ const Navbar = ({ }) => {
                         <Menu />
                     </div>
                 </div>
-            </div>   
+            </div>
         </>
     )
 }

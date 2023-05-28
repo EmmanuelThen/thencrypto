@@ -15,11 +15,11 @@ const description = [
 ]
 const feature = ['Real Time Market Data', 'Interactive Charts', 'News & Insight']
 
-{/** To render each feature next to the description */}
+{/** To render each feature next to the description */ }
 const featuresWithId = feature.map((item, i) => ({
     id: i + 1,
     name: item,
-  }));
+}));
 
 const useParallax = (value: MotionValue<number>, distance: number) => {
     return useTransform(value, [0, 1], [-distance, distance])
@@ -48,8 +48,8 @@ const Description = ({ features, descriptions }: any) => {
 }
 
 
-{/** Main component */}
-const MainContent = ({}) => {
+{/** Main component */ }
+const MainContent = ({ }) => {
     return (
         <>
             {description.map((item, i) => (

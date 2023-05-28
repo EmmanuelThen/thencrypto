@@ -45,7 +45,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
     baseX.set(baseX.get() + moveBy);
   });
 
-  
+
   return (
     <div className="parallax bg-[#191716]">
       <motion.div className="flex whitespace-nowrap flex-nowrap uppercase text-lg md:text-4xl" style={{ x }}>

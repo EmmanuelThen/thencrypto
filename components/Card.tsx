@@ -35,17 +35,16 @@ interface Coin {
   }
 
 const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
-    const [filteredCoins, setFilteredCoins] = useState([]);
-    const [selectedCoin, setselectedCoin] = useState(null);
-    const [originalCoins, setOriginalCoins] = useState([]);
-
+        const [filteredCoins, setFilteredCoins] = useState<Coin[]>([]);
+        const [selectedCoin, setselectedCoin] = useState<Coin | null>(null);
+        const [originalCoins, setOriginalCoins] = useState<Coin[]>([]);
+    
     useEffect(() => {
         const fetchCoinData = async () => {
             const coinData = await getCoinData(amountOfCoins);
             setFilteredCoins(coinData);
             setOriginalCoins(coinData);
         };
-
         fetchCoinData();
     }, [amountOfCoins]);
 
