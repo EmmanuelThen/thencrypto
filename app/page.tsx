@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import ParallaxText from '@/components/ParallaxText';
 import Card from '@/components/Card';
 import MainContent from '@/components/MainContent';
+import Button from '@/components/Button';
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
       </section>
       <section className='w-[100%]'>
         <MainContent />
+      </section>
+      <section className='snap-center'>
+        <Button />
       </section>
     </>
   )

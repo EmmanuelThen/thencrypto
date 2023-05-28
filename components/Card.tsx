@@ -98,7 +98,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                     {filteredCoins.map((coin: Coin) => (
                         <div 
                             key={coin.uuid} 
-                            className="hover:scale-105 hover:transition-all hover:duration-125 ease-in-out cards h-fit p-1 md:p-0 m-2 rounded-[7px] md:leading-8 lg:leading-9 bg-[#fff] text-xs lg:text-sm"
+                            className="hover:scale-105 hover:transition-all hover:duration-125 ease-in-out cards h-fit p-1 md:p-0 m-2 rounded-[7px] md:leading-8 lg:leading-9 bg-[#ebf5ee] text-xs lg:text-sm"
                         >
                             <div className="p-1 md:p-3">
                                 <div className="flex justify-between items-center mb-3">

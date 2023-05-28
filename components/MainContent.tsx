@@ -36,7 +36,7 @@ const Description = ({ features, descriptions }: any) => {
             <motion.div>
                 <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory snap-center' id='motion_section'>
                     <div className='cards rounded-[7px] bg-[#ebf5ee] absolute top-0 left-0 right-0 bottom-0 w-[300px] h-[400px] md:w-[500px] md:h-[400px] p-5' ref={ref} id='motion_div'>
-                        <p className='text-bold md:text-xl'>{descriptions}</p>
+                        <p className='font-bold md:text-xl'>{descriptions}</p>
                     </div>
                     <motion.h2 className='text_gradient text-2xl tracking-tight md:tracking-[-3px] md:text-4xl lg:text-[56px]' style={{ y }} id='features'>
                         <p>{features}</p>
