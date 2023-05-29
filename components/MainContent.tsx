@@ -34,11 +34,12 @@ const Description = ({ features, descriptions }: any) => {
     return (
         <>
             <motion.div>
-                <section className='flex relative justify-center items-center perspective-500 h-screen snap-y snap-mandatory snap-center' id='motion_section'>
-                    <div className='cards rounded-[7px] bg-[#ebf5ee] absolute top-0 left-0 right-0 bottom-0 w-[300px] h-[400px] md:w-[500px] md:h-[400px] p-5' ref={ref} id='motion_div'>
-                        <p className='font-bold md:text-xl'>{descriptions}</p>
+                <section className='flex relative justify-center items-center perspective-500 h-[50vh] md:h-screen md:snap-y md:snap-mandatory md:snap-center' id='motion_section'>
+                    <div className='cards rounded-[7px] bg-[#ebf5ee] absolute top-0 left-0 right-0 bottom-0 w-[300px] h-[300px] md:w-[500px] md:h-[400px] p-5 md:m-[20px]' ref={ref} id='motion_div'>
+                        <h1 className='flex justify-center text-xl mb-5 md:hidden text_gradient'>{features}</h1>
+                        <p className='font-bold md:text-xl text-gray-500'>{descriptions}</p>
                     </div>
-                    <motion.h2 className='text_gradient text-2xl tracking-tight md:tracking-[-3px] md:text-4xl lg:text-[56px]' style={{ y }} id='features'>
+                    <motion.h2 className='hidden md:block text_gradient text-2xl tracking-tight md:tracking-[-3px] md:text-4xl lg:text-[56px] left-calc-50' style={{ y }} id='features'>
                         <p>{features}</p>
                     </motion.h2>
                 </section>

@@ -8,6 +8,14 @@
   .perspective-500 {
     perspective: 500px;
   }
+
+  .left-calc-50 {
+    left: calc(50% + 130px);
+  }
+
+  .sm-left-calc-50 {
+    bottom: calc(80% + 140px);
+  }
 }
 
 .theme_color {
@@ -76,8 +84,6 @@
 #motion_section>#motion_div {
   position: relative;
   max-height: 90vh;
-  margin: 20px;
-
   overflow: hidden;
 }
 
@@ -88,7 +94,6 @@
 #features {
   text-shadow: rgba(0, 0, 0, 0.35) 0 8px 15px;
   margin: 0;
-  left: calc(50% + 130px);
   font-weight: 700;
   line-height: 1.2;
   position: absolute;

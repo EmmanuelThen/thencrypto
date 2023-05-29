@@ -7,7 +7,7 @@ import Button from '@/components/Button';
 export default function Home() {
   return (
     <>
-      <section className='snap-center bg-[#347fc4]'>
+      <section className='md:snap-center bg-[#347fc4]'>
         <Hero />
         <ParallaxText baseVelocity={-3}>
           Bitcoin • Ethereum • Litecoin • Tether • BNB • XRP • Cardano
@@ -22,7 +22,7 @@ export default function Home() {
       <section className='w-[100%]'>
         <MainContent />
       </section>
-      <section className='snap-center'>
+      <section className='md:snap-center'>
         <Button />
       </section>
     </>

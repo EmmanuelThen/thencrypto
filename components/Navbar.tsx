@@ -29,7 +29,7 @@ const Navbar = ({ }) => {
                     <div className='flex justify-center items-center'>
                         <h1>Then<span className='text_gradient'>Crypto</span></h1>
                     </div>
-                    <div className='flex flex-col justify-center text-[#347fc4] hover:text-[#191716] cursor-pointer'>
+                    <div className='flex flex-col justify-center text-[#ebf5ee] hover:text-[#191716] cursor-pointer'>
                         <button type='button' onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                             {isMobileMenuOpen ? <CloseIcon /> : <MenuBookIcon />}
                         </button>

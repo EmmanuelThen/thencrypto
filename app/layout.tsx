@@ -15,8 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <html lang='en' className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden'>
-        <body className={`${inter.className} bg-[#347fc4]`}>
+      <html lang='en' className='md:snap-y md:snap-mandatory overflow-y-scroll'>
+        <body className={`${inter.className} bg-[#347fc4] overflow-x-hidden md:overflow-x-visible`}>
           <Navbar />
           {children}
         </body>
