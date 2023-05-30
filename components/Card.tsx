@@ -109,7 +109,7 @@ const Card = ({ amountOfCoins, display, mdColsNum, lgColsNum }: Props) => {
                                         <div className="h-[1px] bg-gray-300 w-full" />
                                     </div>
                                     <div className="">
-                                        <Fab className="z-0" id={id} size="small" style={{ color: coin.color }} aria-label="add" onClick={(event) => handleClick(event, coin)}>
+                                        <Fab className="z-1" id={id} size="small" style={{ color: coin.color}} aria-label="add" onClick={(event) => handleClick(event, coin)}>
                                             <TrendingUpIcon />
                                         </Fab>
                                         <Popover
